@@ -54,14 +54,14 @@
 
 <script setup lang="ts">
 import { DateTime } from 'luxon';
-import { onUnmounted, ref } from 'vue';
+import { computed, onUnmounted, ref } from 'vue';
 import { useSettingStore } from '@/stores/settings';
 import QuoteComponent from '@/components/Home/QuoteComponent.vue';
 import WeatherComponent from '@/components/Home/WeatherComponent.vue';
 
 const settings = useSettingStore();
-const enableWeather = settings.weather.enabled;
-const enableQuote = settings.quote.enabled;
+const enableWeather = computed(() => settings.weather.enabled);
+const enableQuote = computed(() => settings.quote.enabled);
 
 // Reactive time that changes every second
 // Show current time in HH:mm format

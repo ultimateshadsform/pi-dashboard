@@ -13,9 +13,11 @@
 <style lang="scss" scoped></style>
 
 <script setup lang="ts">
+import { useSettingStore } from '@/stores/settings';
 import { Quote } from '@/types/ninja';
 import { useFetch } from '@vueuse/core';
 import { onUnmounted, ref } from 'vue';
+const appSettings = useSettingStore();
 
 const quoteApi = 'https://api.api-ninjas.com/v1/quotes?category=';
 
@@ -95,7 +97,7 @@ const fetchQuote = async () => {
     categories.value[Math.floor(Math.random() * categories.value.length)];
   const { data } = await useFetch<Quote[]>(quoteApi + randomCategory, {
     headers: {
-      'X-Api-Key': import.meta.env.VITE_NINJA_API_KEY,
+      'X-Api-Key': appSettings.quote.apiKey,
     },
   })
     .get()

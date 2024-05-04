@@ -32,18 +32,19 @@
 </template>
 
 <script setup lang="ts">
+import { useSettingStore } from '@/stores/settings';
 import { WeatherData } from '@/types/weather';
 import { useFetch } from '@vueuse/core';
 import { onUnmounted, ref } from 'vue';
+
+const appSettings = useSettingStore();
 
 const weather = ref<WeatherData | null>(null);
 
 const city = 'Skurup';
 const units = 'metric';
 
-const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${
-  import.meta.env.VITE_WEATHER_API_KEY
-}&units=${units}`;
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appSettings.weather.apiKey}&units=${units}`;
 
 const fetchWeather = async () => {
   const { data } = await useFetch<WeatherData>(url).get().json<WeatherData>();
