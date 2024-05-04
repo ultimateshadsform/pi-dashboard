@@ -13,7 +13,7 @@ export const useSettingStore = defineStore('settings', {
 
       weather: useStorage('weather', {
         enabled: true,
-        apiKey: import.meta.env.VITE_OPEN_WEATHER_API_KEY,
+        apiKey: import.meta.env.VITE_WEATHER_API_KEY,
       }),
     };
   },

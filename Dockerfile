@@ -1,6 +1,12 @@
 # Use oven/bun as base image
 FROM oven/bun as base
 
+ARG VITE_WEATHER_API_KEY
+ARG VITE_NINJA_API_KEY
+
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+ENV VITE_API_KEY=$VITE_API_KEY
+
 WORKDIR /usr/src/app
 
 # Install dependencies into temp directory

@@ -1,6 +1,9 @@
 services:
   app:
     platform: linux/aarch64
+    # Environment variables from .env file
+    env_file:
+      - ./frontend/.env
     build:
       context: .
       dockerfile: ./Dockerfile
