@@ -10,7 +10,7 @@
             >{{ time.hours }}<span class="blink">:</span
             >{{ time.minutes }}</span
           >
-          <span class="text-xl">{{ date }}</span>
+          <span class="text-xl">{{ time.date }}</span>
         </h1>
         <QuoteComponent v-if="enableQuote" key="quote" class="max-w-lg" />
       </div>
@@ -69,14 +69,14 @@ const enableQuote = computed(() => settings.quote.enabled);
 const time = ref({
   hours: DateTime.local().toFormat('HH'),
   minutes: DateTime.local().toFormat('mm'),
+  date: DateTime.local().toFormat('MMMM d, yyyy'),
 });
-
-const date = ref(DateTime.local().toFormat('MMMM d, yyyy'));
 
 const timeInterval = setInterval(() => {
   time.value = {
     hours: DateTime.local().toFormat('HH'),
     minutes: DateTime.local().toFormat('mm'),
+    date: DateTime.local().toFormat('MMMM d, yyyy'),
   };
 }, 1000 * 10);
 
